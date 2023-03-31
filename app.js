@@ -4,28 +4,18 @@ const port = 3000
 
 const note = require("./routers/note")
 
-app.use("/static", express.static('public'))
+app.set("view engine", "pug")
 
+app.use("/static", express.static('public'))
 app.use("/note", note)
 
 app.use(function (req, res, next) {
     console.log("Status code: " + res.statusCode)
-    console.error("Status code: " + res.statusCode)
     next()
 })
-
-app.use(function (req, res, next) {
-    console.log("second middleware!")
-    next()
-})
-
 
 app.get('/', (req, res) => {
-    console.log(res.statusCode)
-    res.send({
-        text: "Hello Express!",
-        http: "https://en.wikipedia.org/wiki/HTTP#Request_methods"
-    })
+    res.render('index')
 })
 
 app.listen(port, () => {

@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 
-router.use('/about', (req, res, next) => {
+router.use((req, res, next) => {
     console.log("note Router activated!")
     next()
 })
